@@ -1,0 +1,23 @@
+CREATING A TABLE IN DATABASE TO UPLOAD ARTICLES.
+
+Using a database to store your articles is a great idea, as it can help you better manage and display your content. To design a good structure for your database, you can use a relational database management system (RDBMS) such as MySQL, PostgreSQL, or SQLite. Here's a simple example of a table structure you could use:
+
+Create a table named articles with the following columns:
+id: A unique identifier (Primary Key) for each article. You can use an auto-incrementing integer or a UUID.
+title: A VARCHAR column to store the article's title.
+content: A TEXT column to store the article's content.
+author: A VARCHAR column to store the author's name (or a foreign key if you have a separate authors table).
+created_at: A DATETIME or TIMESTAMP column to store the article's creation date.
+updated_at: A DATETIME or TIMESTAMP column to store the article's last update date.
+You don't need to store your articles in HTML format in the database. It's generally better to store them as plain text or Markdown. This makes it easier to manage and edit the content, and you can convert it to HTML when rendering on the front-end.
+
+Here's an example of how you could create the articles table in SQL:
+
+CREATE TABLE articles (
+  id SERIAL PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  content TEXT NOT NULL,
+  author VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
