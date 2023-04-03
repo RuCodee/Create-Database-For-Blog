@@ -21,3 +21,11 @@ CREATE TABLE articles (
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
+
+
+When you want to display an article on your website, you can fetch the required data from the database, convert the content to HTML (if using Markdown or another format), and render it using your front-end code.
+
+For example, if you're using JavaScript to fetch and display articles, you can use a library like Showdown to convert Markdown content to HTML.
+
+Remember to sanitize the content before rendering it on the front-end to prevent potential security issues like Cross-Site Scripting (XSS) attacks.
