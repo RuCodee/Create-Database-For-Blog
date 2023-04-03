@@ -1,0 +1,33 @@
+UPLOADING PHOTOS TO YOUR ARTICLE
+
+To upload images and associate them with your articles, you can either store the images directly in the database or store them on the server's file system and save their file paths or URLs in the database. Storing images on the server's file system is generally more efficient and recommended.
+
+Here's a suggested approach:
+
+Create a new table named images with the following columns:
+
+id: A unique identifier (Primary Key) for each image. You can use an auto-incrementing integer or a UUID.
+article_id: A foreign key that links the image to the associated article in the articles table.
+file_path: A VARCHAR column to store the image's file path or URL.
+caption: An optional VARCHAR column to store an image caption or description.
+In your article submission form, add a file input field to allow users to upload images.
+
+When an image is uploaded, save it on the server's file system in a designated folder (e.g., /uploads/images). Make sure to give each image a unique filename, such as a combination of the current timestamp and a random string.
+
+After saving the image, insert a new record into the images table, storing the article_id and file_path.
+
+To display images within an article, you can use a placeholder in your article's content (e.g., [[IMAGE_1]]). When rendering the article, replace these placeholders with the corresponding image URLs fetched from the images table.
+
+Here's an example of how you could create the images table in SQL:
+
+CREATE TABLE images (
+  id SERIAL PRIMARY KEY,
+  article_id INTEGER NOT NULL,
+  file_path VARCHAR(255) NOT NULL,
+  caption VARCHAR(255),
+  FOREIGN KEY (article_id) REFERENCES articles (id)
+);
+
+When you fetch article data from the database, you can also fetch the associated images by joining the articles and images tables on the article_id column. Then, replace the image placeholders in your article's content with the actual image URLs.
+
+To place the image where you need it to be, you can style the HTML <img> tag using CSS. For example, if you want to center the image or float it to the left or right, you can apply CSS classes to the <img> tag and style it accordingly.
